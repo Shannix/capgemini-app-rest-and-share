@@ -33,6 +33,7 @@ export class AppComponent {
     } else {
       this.topics.push(title);
       this.topicInput = '';
+
       //  $('#exampleModal').modal('hide');
     }
 

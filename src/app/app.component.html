@@ -238,15 +238,17 @@
           </div>
 
           <div class="modal-body">
-            <input type="text" [(ngModel)]="topicInput" class="form-control" placeholder="Topic">
+            <input type="text" [(ngModel)]="topicInput" id="topicInput" class="form-control" placeholder="Topic">
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" (click)="updateTopic()">Ajouter ce theme</button>
+            <button type="submit" class="btn btn-primary" onclick="closeModal()" (click)="updateTopic()">Ajouter ce theme</button>
           </div>
 
         </div>
       </div>
     </div>
+
+
 
     <footer>
       Copyright (c) {{year}} {{owner}} All Rights Reserved. {{version}}
