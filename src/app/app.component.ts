@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import * as moment from 'moment';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
 
 
 
@@ -21,10 +23,22 @@ export class AppComponent {
 
   topics = ["Topic 1", "Topic 2", "Topic 3", "Topic 4"];
 
+  topicInput = '';
 
-  addTopic(id) {
+  updateTopic = function() {
+    //  e.preventDefault();
+    let title = this.topicInput;
+    if (title == "") {
+      alert("Ce champ obligatoire");
+    } else {
+      this.topics.push(title);
+      this.topicInput = '';
+      $('#exampleModal').modal('hide');
+    }
+
 
 
   }
+
 
 }
