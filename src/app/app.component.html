@@ -6,20 +6,26 @@
       <div class="col-sm-12">
         <div class="card text-center">
           <div class="card-header">
-            <select class="custom-select" size="3">
-  <option selected >Topic 1</option>
-  <option value="1">Topic 2 </option>
-  <option value="2">Topic 3 </option>
-  <option value="3">Topic 4</option>
-           </select>
-
+            <div class="col-sm-12 form-inline">
+              <div class="col-sm-11">
+                <select class="custom-select" size="3" style="width:100%;">
+    <option selected >Topic 1</option>
+    <option value="1">Topic 2 </option>
+    <option value="2">Topic 3 </option>
+    <option value="3">Topic 4</option>
+             </select>
+              </div>
+              <div class="col-sm-1">
+                <button type="submit" class="btn btn-success space"><i class="fas fa-plus-square fa-2x "></i></button>
+              </div>
+            </div>
           </div>
           <div class="card-body">
 
             <div class="col-sm-9 d-block mx-auto">
               <div class="card">
                 <div class="card-header">
-                  Liste des participants - {{today}}
+                  Liste des participants de ce {{today}}
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">
@@ -181,8 +187,9 @@
                             <input type="email" class="form-control " placeholder="hello.world@capgemini.com">
                           </div>
                         </div>
-                        <div class="col-sm-2">
-                          <button type="submit" class="btn btn-success">Envoyer l'invitation</button>
+                        <div class="col-sm-3 form-group">
+                          <button type="submit" class="btn btn-danger space"><i class="fas fa-window-close fa-lg "></i></button>
+                          <button type="submit" class="btn btn-success space"><i class="fas fa-calendar-check fa-lg "></i></button>
                         </div>
                       </div>
                     </form>
@@ -198,8 +205,6 @@
           </div>
           <div class="card-footer text-muted text-center">
 
-            <a href="#" class="space">  <i class="fab fa-linkedin fa-2x"></i></a>
-            <a href="#" class="space">  <i class="fab fa-git-square fa-2x"></i></a>
             <a href="#" class="space">  <i class="fab fa-facebook fa-2x"></i> </a>
             <a href="#" class="space">  <i class="fab fa-twitter-square fa-2x"></i></a>
             <a href="#" class="space">  <i class="fab fa-instagram fa-2x"></i></a>
