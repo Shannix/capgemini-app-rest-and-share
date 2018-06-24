@@ -13,11 +13,8 @@
               </div>
               <div class="col-12 col-sm-10">
                 <select class="custom-select" size="3" style="width:100%;">
-    <option selected >Topic 1</option>
-    <option value="1">Topic 2 </option>
-    <option value="2">Topic 3 </option>
-    <option value="3">Topic 4</option>
-             </select>
+                     <option *ngFor="let topic of topics let i = index; " value="{{i}}" > {{topic}} </option>
+                  </select>
               </div>
               <div class="col-sm-1 d-none d-sm-block ">
                 <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-dark "><i class="fas fa-plus-square fa-2x "></i></button>

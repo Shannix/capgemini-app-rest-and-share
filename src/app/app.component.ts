@@ -19,7 +19,12 @@ export class AppComponent {
 
   today = moment().locale('fr').format("dddd, Do MMMM YYYY");
 
+  topics = ["Topic 1", "Topic 2", "Topic 3", "Topic 4"];
 
 
+  addTopic(id) {
+
+
+  }
 
 }
