@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import * as moment from 'moment';
-
+import $ = require("jquery");
 
 @Component({
   selector: 'app-root',
@@ -29,11 +29,11 @@ export class AppComponent {
     //  e.preventDefault();
     let title = this.topicInput;
     if (title == "") {
-      alert("Ce champ obligatoire");
+      alert("Ce champ est obligatoire");
     } else {
       this.topics.push(title);
       this.topicInput = '';
-      $('#exampleModal').modal('hide');
+      //  $('#exampleModal').modal('hide');
     }
 
 
