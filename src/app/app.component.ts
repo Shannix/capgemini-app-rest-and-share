@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import * as moment from 'moment';
-import $ = require("jquery");
+
 
 @Component({
   selector: 'app-root',
