@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+
+
+
+  //---------------------------FOOTER-------------------------------------------------------------
+  year = (new Date()).getFullYear();
+  version = "v0.1";
+  owner = "rest and share";
+  //----------------------------------------------------------------------------------------------
+
+
 }
