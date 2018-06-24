@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,10 @@ export class AppComponent {
   version = "v0.1";
   owner = "rest and share";
   //----------------------------------------------------------------------------------------------
+
+  today = moment().locale('fr').format("dddd, Do MMMM YYYY");
+
+
 
 
 }
