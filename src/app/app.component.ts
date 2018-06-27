@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import * as moment from 'moment';
+import { Observable, Subject, ReplaySubject, from, of, range } from 'rxjs';
+import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 
 
 @Component({
@@ -9,8 +11,27 @@ import * as moment from 'moment';
 })
 export class AppComponent {
 
+  private basePath: string = '/topics';
+  public topics: any = [];
 
+  constructor(public db: AngularFireDatabase) {
+    this.topics = db.list('/topics').valueChanges().subscribe(data => { this.topics = data; });
+  }
 
+  ngOnInit() { }
+
+  /*
+    public getList() {
+      let topicsTab: any = [];
+      this.topicsTab = this.db.list('/topics').valueChanges().subscribe(data => { this.topicsTab = data; });
+      console.log(topicsTab);
+      return this.topicsTab;
+    }
+  */
+
+  public addTopic(newTopic: string) {
+    this.db.list(this.basePath).push(newTopic);
+  }
 
 
   //---------------------------FOOTER-------------------------------------------------------------
@@ -21,7 +42,7 @@ export class AppComponent {
 
   today = moment().locale('fr').format("dddd, Do MMMM YYYY");
 
-  topics = ["Topic 1", "Topic 2", "Topic 3", "Topic 4"];
+
 
   topicInput = '';
 
@@ -32,9 +53,8 @@ export class AppComponent {
       alert("Ce champ est obligatoire");
     } else {
       this.topics.push(title);
+      this.addTopic(title);
       this.topicInput = '';
-
-      //  $('#exampleModal').modal('hide');
     }
 
 

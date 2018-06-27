@@ -13,7 +13,7 @@
               </div>
               <div class="col-12 col-sm-10">
                 <select class="custom-select" size="3" style="width:100%;">
-                     <option *ngFor="let topic of topics let i = index; " value="{{i}}" > {{topic}} </option>
+                     <option *ngFor="let topic of topics ; let i = index; " value="{{i}}" > {{topic}} </option>
                   </select>
               </div>
               <div class="col-sm-1 d-none d-sm-block ">
