@@ -33,13 +33,8 @@ export class AppComponent {
 
   }
 
-  ngOnInit() {
+  ngOnInit() { }
 
-
-
-
-
-  }
 
   addTopicToFirebase(topic) {
     let newKey = "2";
@@ -107,6 +102,6 @@ export interface members {
 }
 
 export interface person {
-  email: string;
-  name: string;
+  nom: string;
+  prenom: string;
 }
