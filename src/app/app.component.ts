@@ -30,8 +30,6 @@ export class AppComponent {
         this.addTopicToFirebase("aucun n'a été proposé");
       }
     });
-    //  console.log(this.todayDate);
-
 
   }
 
