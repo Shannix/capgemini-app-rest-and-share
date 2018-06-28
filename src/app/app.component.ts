@@ -14,11 +14,48 @@ export class AppComponent {
   private basePath: string = '/topics';
   public topics: any = [];
 
+  public informations: any = [];
+  public present: any[] = [];
+  //{ name: "abc", email: "heelo" }
+
+  todayDate = moment().locale('fr').format('L');
+
   constructor(public db: AngularFireDatabase) {
-    this.topics = db.list('/topics').valueChanges().subscribe(data => { this.topics = data; });
+    db.list('/topics').valueChanges().subscribe(data => { this.topics = data; });
+    db.list<person>('/present').valueChanges().subscribe(data => { this.present = data; });
+    db.list('/informations').valueChanges().subscribe(data => {
+      this.informations = data;
+      if (this.informations[0] != this.todayDate) {
+        this.addDateToFirebase(this.todayDate);
+        this.addTopicToFirebase("aucun n'a été proposé");
+      }
+    });
+    //  console.log(this.todayDate);
+
+
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+
+
+
+
+  }
+
+  addTopicToFirebase(topic) {
+    let newKey = "2";
+    let list = this.db.object(`/informations/${newKey}`).set(topic);
+
+    this.db.list('informations').push(list);
+  }
+
+  addDateToFirebase(date) {
+    let newKey = "1";
+    let list = this.db.object(`/informations/${newKey}`).set(date);
+
+    this.db.list('informations').push(list);
+  }
 
   /*
     public getList() {
@@ -44,6 +81,7 @@ export class AppComponent {
 
 
 
+
   topicInput = '';
 
   updateTopic = function() {
@@ -62,4 +100,15 @@ export class AppComponent {
   }
 
 
+}
+
+export interface members {
+
+
+
+}
+
+export interface person {
+  email: string;
+  name: string;
 }

@@ -13,7 +13,8 @@
               </div>
               <div class="col-12 col-sm-10">
                 <select class="custom-select" size="3" style="width:100%;">
-                     <option *ngFor="let topic of topics ; let i = index; " value="{{i}}" > {{topic}} </option>
+                  <option selected=selected> Sujet du jour : {{ informations[1] }} </option>
+                     <option (click)="addTopicToFirebase(topic)" *ngFor="let topic of topics ; let i = index; " value="{{i}}" >  {{topic}} </option>
                   </select>
               </div>
               <div class="col-sm-1 d-none d-sm-block ">
@@ -30,21 +31,23 @@
                   Liste des participants de ce {{today}}
                 </div>
                 <ul class="list-group list-group-flush">
+
                   <li class="list-group-item">
-                    <form class="">
-                      <div class="col-sm-12 form-inline">
+
+                    <div class="form-inline">
+                      <div class="row">
                         <div class="col-sm-1">
                           <h4><span class="badge badge-dark"> 1</span> </h4></div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="space">Nom</label>
-                            <input type="text" class="form-control" placeholder="Hello, World">
+                            <label class="space">Prénom :</label>
+                            <input type="text" class="form-control" placeholder="Hello">
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-group space">
-                            <label class="space">Email</label>
-                            <input type="email" class="form-control " placeholder="hello.world@capgemini.com">
+                            <label class="space">Nom :</label>
+                            <input type="email" class="form-control " placeholder="World">
                           </div>
                         </div>
                         <div class="col-sm-3 form-group">
@@ -52,24 +55,25 @@
                           <button type="submit" class="btn btn-success space"><i class="fas fa-calendar-check fa-lg "></i></button>
                         </div>
                       </div>
-                    </form>
+                    </div>
+
                   </li>
 
                   <li class="list-group-item">
-                    <form class="">
-                      <div class="col-sm-12 form-inline">
+                    <div class="form-inline">
+                      <div class="row">
                         <div class="col-sm-1">
-                          <h4><span class="badge badge-dark"> 2 </span> </h4></div>
-                        <div class="col-sm-3">
+                          <h4><span class="badge badge-dark"> 2</span> </h4></div>
+                        <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="space">Nom</label>
-                            <input type="text" class="form-control" placeholder="Hello, World">
+                            <label class="space">Prénom :</label>
+                            <input type="text" class="form-control" placeholder="Hello">
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-group space">
-                            <label class="space">Email</label>
-                            <input type="email" class="form-control " placeholder="hello.world@capgemini.com">
+                            <label class="space">Nom :</label>
+                            <input type="email" class="form-control " placeholder="World">
                           </div>
                         </div>
                         <div class="col-sm-3 form-group">
@@ -77,24 +81,24 @@
                           <button type="submit" class="btn btn-success space"><i class="fas fa-calendar-check fa-lg "></i></button>
                         </div>
                       </div>
-                    </form>
+                    </div>
                   </li>
 
                   <li class="list-group-item">
-                    <form class="">
-                      <div class="col-sm-12 form-inline">
+                    <div class="form-inline">
+                      <div class="row">
                         <div class="col-sm-1">
-                          <h4><span class="badge badge-dark"> 3 </span> </h4></div>
-                        <div class="col-sm-3">
+                          <h4><span class="badge badge-dark"> 3</span> </h4></div>
+                        <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="space">Nom</label>
-                            <input type="text" class="form-control" placeholder="Hello, World">
+                            <label class="space">Prénom :</label>
+                            <input type="text" class="form-control" placeholder="Hello">
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-group space">
-                            <label class="space">Email</label>
-                            <input type="email" class="form-control " placeholder="hello.world@capgemini.com">
+                            <label class="space">Nom :</label>
+                            <input type="email" class="form-control " placeholder="World">
                           </div>
                         </div>
                         <div class="col-sm-3 form-group">
@@ -102,24 +106,24 @@
                           <button type="submit" class="btn btn-success space"><i class="fas fa-calendar-check fa-lg "></i></button>
                         </div>
                       </div>
-                    </form>
+                    </div>
                   </li>
 
                   <li class="list-group-item">
-                    <form class="">
-                      <div class="col-sm-12 form-inline">
+                    <div class="form-inline">
+                      <div class="row">
                         <div class="col-sm-1">
-                          <h4><span class="badge badge-dark"> 4 </span> </h4></div>
-                        <div class="col-sm-3">
+                          <h4><span class="badge badge-dark"> 4</span> </h4></div>
+                        <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="space">Nom</label>
-                            <input type="text" class="form-control" placeholder="Hello, World">
+                            <label class="space">Prénom :</label>
+                            <input type="text" class="form-control" placeholder="Hello">
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-group space">
-                            <label class="space">Email</label>
-                            <input type="email" class="form-control " placeholder="hello.world@capgemini.com">
+                            <label class="space">Nom :</label>
+                            <input type="email" class="form-control " placeholder="World">
                           </div>
                         </div>
                         <div class="col-sm-3 form-group">
@@ -127,24 +131,24 @@
                           <button type="submit" class="btn btn-success space"><i class="fas fa-calendar-check fa-lg "></i></button>
                         </div>
                       </div>
-                    </form>
+                    </div>
                   </li>
 
                   <li class="list-group-item">
-                    <form class="">
-                      <div class="col-sm-12 form-inline">
+                    <div class="form-inline">
+                      <div class="row">
                         <div class="col-sm-1">
-                          <h4><span class="badge badge-dark"> 5 </span> </h4></div>
-                        <div class="col-sm-3">
+                          <h4><span class="badge badge-dark"> 5</span> </h4></div>
+                        <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="space">Nom</label>
-                            <input type="text" class="form-control" placeholder="Hello, World">
+                            <label class="space">Prénom :</label>
+                            <input type="text" class="form-control" placeholder="Hello">
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-group space">
-                            <label class="space">Email</label>
-                            <input type="email" class="form-control " placeholder="hello.world@capgemini.com">
+                            <label class="space">Nom :</label>
+                            <input type="email" class="form-control " placeholder="World">
                           </div>
                         </div>
                         <div class="col-sm-3 form-group">
@@ -152,23 +156,23 @@
                           <button type="submit" class="btn btn-success space"><i class="fas fa-calendar-check fa-lg "></i></button>
                         </div>
                       </div>
-                    </form>
+                    </div>
                   </li>
                   <li class="list-group-item">
-                    <form class="">
-                      <div class="col-sm-12 form-inline">
+                    <div class="form-inline">
+                      <div class="row">
                         <div class="col-sm-1">
-                          <h4><span class="badge badge-dark"> 6 </span> </h4></div>
-                        <div class="col-sm-3">
+                          <h4><span class="badge badge-dark"> 6</span> </h4></div>
+                        <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="space">Nom</label>
-                            <input type="text" class="form-control" placeholder="Hello, World">
+                            <label class="space">Prénom :</label>
+                            <input type="text" class="form-control" placeholder="Hello">
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-group space">
-                            <label class="space">Email</label>
-                            <input type="email" class="form-control " placeholder="hello.world@capgemini.com">
+                            <label class="space">Nom :</label>
+                            <input type="email" class="form-control " placeholder="World">
                           </div>
                         </div>
                         <div class="col-sm-3 form-group">
@@ -176,23 +180,23 @@
                           <button type="submit" class="btn btn-success space"><i class="fas fa-calendar-check fa-lg "></i></button>
                         </div>
                       </div>
-                    </form>
+                    </div>
                   </li>
                   <li class="list-group-item">
-                    <form class="">
-                      <div class="col-sm-12 form-inline">
+                    <div class="form-inline">
+                      <div class="row">
                         <div class="col-sm-1">
-                          <h4><span class="badge badge-dark"> 7 </span> </h4></div>
-                        <div class="col-sm-3">
+                          <h4><span class="badge badge-dark"> 7</span> </h4></div>
+                        <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="space">Nom</label>
-                            <input type="text" class="form-control" placeholder="Hello, World">
+                            <label class="space">Prénom :</label>
+                            <input type="text" class="form-control" placeholder="Hello">
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-group space">
-                            <label class="space">Email</label>
-                            <input type="email" class="form-control " placeholder="hello.world@capgemini.com">
+                            <label class="space">Nom :</label>
+                            <input type="email" class="form-control " placeholder="World">
                           </div>
                         </div>
                         <div class="col-sm-3 form-group">
@@ -200,7 +204,7 @@
                           <button type="submit" class="btn btn-success space"><i class="fas fa-calendar-check fa-lg "></i></button>
                         </div>
                       </div>
-                    </form>
+                    </div>
                   </li>
 
                 </ul>
