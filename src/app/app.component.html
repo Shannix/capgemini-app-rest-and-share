@@ -14,7 +14,7 @@
               <div class="col-12 col-sm-10">
                 <select class="custom-select" size="3" style="width:100%;">
                   <option selected=selected> Sujet du jour : {{ informations[1] }} </option>
-                     <option (click)="addTopicToFirebase(topic)" *ngFor="let topic of topics ; let i = index; " value="{{i}}" >  {{topic}} </option>
+                     <option (click)="addTopicToFirebase(topic)"  *ngFor="let topic of topics ; let i = index; " value="{{i}}" >  {{topic}} </option>
                   </select>
               </div>
               <div class="col-sm-1 d-none d-sm-block ">
@@ -32,28 +32,33 @@
                 </div>
                 <ul class="list-group list-group-flush">
 
-                  <li class="list-group-item" *ngFor="let pr of present ; let i = index; ">
+                  <li class="list-group-item">
 
                     <div class="form-inline">
                       <div class="row">
                         <div class="col-sm-1">
-                          <h4><span class="badge badge-dark"> {{i+1}} </span> </h4></div>
+                          <h4><span class="badge badge-dark"> 1 </span> </h4></div>
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label class="space">Prénom :</label>
-                            <input type="text" value="{{present[i].prenom}}" class="form-control" placeholder="Hello">
+                            <input type="text" [(ngModel)]="N0" value="{{present[0].prenom}}" (keyup)="addPersonToFirebase('1', M0 , N0)" class="form-control " placeholder="Hello ">
                           </div>
                         </div>
-                        <div class="col-sm-4">
-                          <div class="form-group space">
-                            <label class="space">Nom :</label>
-                            <input type="email" value="{{present[i].nom}}" class="form-control " placeholder="World">
+                        <div class="col-sm-4 ">
+                          <div class="form-group space ">
+                            <label class="space ">Nom :</label>
+                            <input type="text" [(ngModel)]="M0" value="{{present[0].nom}} " (keyup)="addPersonToFirebase('1', M0, N0 )" class="form-control " placeholder="World ">
                           </div>
                         </div>
-                        <div class="col-sm-3 form-group">
-                          <button type="submit" class="btn btn-danger space"><i class="fas fa-window-close fa-lg "></i></button>
-                          <button type="submit" class="btn btn-success space"><i class="fas fa-calendar-check fa-lg "></i></button>
+
+                        <div class="col-sm-3 form-group ">
+                          <button type="submit " class="btn btn-danger space "><i class="fas fa-window-close fa-lg "></i></button>
+                          <button type="submit " class="btn btn-success space "><i class="fas fa-calendar-check fa-lg "></i></button>
                         </div>
+                        <div class="col-sm-12 ">
+                          {{N0}}.{{M0}}@capgemini.com
+                        </div>
+
                       </div>
                     </div>
 
@@ -67,12 +72,12 @@
 
 
           </div>
-          <div class="card-footer text-muted text-center">
+          <div class="card-footer text-muted text-center ">
 
-            <a href="#" class="space">  <i class="fab fa-facebook fa-2x"></i> </a>
-            <a href="#" class="space">  <i class="fab fa-twitter-square fa-2x"></i></a>
-            <a href="#" class="space">  <i class="fab fa-instagram fa-2x"></i></a>
-            <a href="#" class="space">  <i class="fab fa-google-plus-square fa-2x"></i></a>
+            <a href="# " class="space ">  <i class="fab fa-facebook fa-2x "></i> </a>
+            <a href="# " class="space ">  <i class="fab fa-twitter-square fa-2x "></i></a>
+            <a href="# " class="space ">  <i class="fab fa-instagram fa-2x "></i></a>
+            <a href="# " class="space ">  <i class="fab fa-google-plus-square fa-2x "></i></a>
 
           </div>
         </div>
@@ -83,21 +88,21 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Nouveau theme</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+    <div class="modal fade " id="exampleModal " tabindex="-1 " role="dialog " aria-labelledby="exampleModalLabel " aria-hidden="true ">
+      <div class="modal-dialog " role="document ">
+        <div class="modal-content ">
+          <div class="modal-header ">
+            <h5 class="modal-title " id="exampleModalLabel ">Nouveau theme</h5>
+            <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
+              <span aria-hidden="true ">&times;</span>
             </button>
           </div>
 
-          <div class="modal-body">
-            <input type="text" [(ngModel)]="topicInput" id="topicInput" class="form-control" placeholder="Topic">
+          <div class="modal-body ">
+            <input type="text " [(ngModel)]="topicInput " id="topicInput " class="form-control " placeholder="Topic ">
           </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" onclick="closeModal()" (click)="updateTopic()">Ajouter ce theme</button>
+          <div class="modal-footer ">
+            <button type="submit " class="btn btn-primary " onclick="closeModal() " (click)="updateTopic() ">Ajouter ce theme</button>
           </div>
 
         </div>

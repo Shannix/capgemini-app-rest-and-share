@@ -22,18 +22,37 @@ export class AppComponent {
 
   constructor(public db: AngularFireDatabase) {
     db.list('/topics').valueChanges().subscribe(data => { this.topics = data; });
-    db.list<person>('/present').valueChanges().subscribe(data => { this.present = data; });
+    db.list<person>('/present').valueChanges().subscribe(data => {
+      this.present = data;
+
+    });
     db.list('/informations').valueChanges().subscribe(data => {
       this.informations = data;
       if (this.informations[0] != this.todayDate) {
         this.addDateToFirebase(this.todayDate);
         this.addTopicToFirebase("aucun n'a été proposé");
+        this.addPersonToFirebase("1", "*", "*");
+        this.addPersonToFirebase("2", "*", "*");
+        this.addPersonToFirebase("3", "*", "*");
+        this.addPersonToFirebase("4", "*", "*");
+        this.addPersonToFirebase("5", "*", "*");
+        this.addPersonToFirebase("6", "*", "*");
+        this.addPersonToFirebase("7", "*", "*");
       }
     });
 
   }
 
   ngOnInit() { }
+
+  addPersonToFirebase(id, name, pre) {
+    let newKey = id;
+
+    let list = this.db.object(`/present/${newKey}`).set({ nom: name, prenom: pre });
+
+
+    this.db.list('present').push(list);
+  }
 
 
   addTopicToFirebase(topic) {
