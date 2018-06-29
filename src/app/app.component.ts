@@ -31,13 +31,13 @@ export class AppComponent {
       if (this.informations[0] != this.todayDate) {
         this.addDateToFirebase(this.todayDate);
         this.addTopicToFirebase("aucun n'a été proposé");
-        this.addPersonToFirebase("1", "*", "*");
-        this.addPersonToFirebase("2", "*", "*");
-        this.addPersonToFirebase("3", "*", "*");
-        this.addPersonToFirebase("4", "*", "*");
-        this.addPersonToFirebase("5", "*", "*");
-        this.addPersonToFirebase("6", "*", "*");
-        this.addPersonToFirebase("7", "*", "*");
+        this.addPersonToFirebase("1", "-", "-");
+        this.addPersonToFirebase("2", "-", "-");
+        this.addPersonToFirebase("3", "-", "-");
+        this.addPersonToFirebase("4", "-", "-");
+        this.addPersonToFirebase("5", "-", "-");
+        this.addPersonToFirebase("6", "-", "-");
+        this.addPersonToFirebase("7", "-", "-");
       }
     });
 
