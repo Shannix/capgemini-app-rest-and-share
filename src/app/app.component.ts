@@ -47,9 +47,7 @@ export class AppComponent {
 
   addPersonToFirebase(id, name, pre) {
     let newKey = id;
-
     let list = this.db.object(`/present/${newKey}`).set({ nom: name, prenom: pre });
-
 
     this.db.list('present').push(list);
   }

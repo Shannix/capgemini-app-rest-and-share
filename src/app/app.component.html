@@ -38,24 +38,25 @@
                       <div class="row">
                         <div class="col-sm-1">
                           <h4><span class="badge badge-dark"> 1 </span> </h4></div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 ">
                           <div class="form-group">
-                            <label class="space">Prénom :</label>
-                            <input type="text" [(ngModel)]="N0" value="{{present[0].prenom}}" (keyup)="addPersonToFirebase('1', M0 , N0)" class="form-control " placeholder="Hello ">
+                            <label class="space col-sm-12">Prénom </label>
+                            <input type="text" [(ngModel)]="N0" value="{{present[0].prenom}}" (keyup)="addPersonToFirebase('0', M0 , N0)" class="form-control col-sm-12" placeholder="Hello ">
                           </div>
                         </div>
                         <div class="col-sm-4 ">
-                          <div class="form-group space ">
-                            <label class="space ">Nom :</label>
-                            <input type="text" [(ngModel)]="M0" value="{{present[0].nom}} " (keyup)="addPersonToFirebase('1', M0, N0 )" class="form-control " placeholder="World ">
+                          <div class="form-group space">
+                            <label class="space col-sm-12">Nom </label>
+                            <input type="text" [(ngModel)]="M0" value="{{present[0].nom}}" (change)="addPersonToFirebase('0', M0, N0 )" class="form-control col-sm-12" placeholder="World ">
                           </div>
                         </div>
 
                         <div class="col-sm-3 form-group ">
-                          <button type="submit " class="btn btn-danger space "><i class="fas fa-window-close fa-lg "></i></button>
-                          <button type="submit " class="btn btn-success space "><i class="fas fa-calendar-check fa-lg "></i></button>
+                          <button type="submit " *ngIf="present[0].nom!='-' && present[0].prenom!='-'  " (click)="addPersonToFirebase('0', '-', '-' )" class="btn btn-danger space "><i class="fas fa-window-close fa-lg "></i></button>
+                          <button type="submit " disabled class="btn btn-success space "><i class="fas fa-calendar-check fa-lg "></i></button>
                         </div>
-                        <div class="col-sm-12 ">
+
+                        <div *ngIf="present[0].nom!='-' && present[0].prenom!='-' " class="col-sm-12 ">
                           {{N0}}.{{M0}}@capgemini.com
                         </div>
 
@@ -63,6 +64,12 @@
                     </div>
 
                   </li>
+
+
+
+
+
+
 
                 </ul>
               </div>
