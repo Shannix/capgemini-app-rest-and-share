@@ -13,9 +13,8 @@ export class AppComponent {
 
   private basePath: string = '/topics';
   public topics: any = [];
-
   public informations: any = [];
-  public present: any[] = [];
+  public present: person[] = [];
   //{ name: "abc", email: "heelo" }
 
   todayDate = moment().locale('fr').format('L');
@@ -24,7 +23,6 @@ export class AppComponent {
     db.list('/topics').valueChanges().subscribe(data => { this.topics = data; });
     db.list<person>('/present').valueChanges().subscribe(data => {
       this.present = data;
-
     });
     db.list('/informations').valueChanges().subscribe(data => {
       this.informations = data;
