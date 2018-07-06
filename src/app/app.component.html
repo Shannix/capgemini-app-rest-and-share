@@ -13,8 +13,8 @@
               </div>
               <div class="col-12 col-sm-10">
                 <select class="custom-select" size="3" style="width:100%;">
-                  <option selected=selected> Sujet du jour : {{ informations[1] }} </option>
-                     <option (click)="addTopicToFirebase(topic)"  *ngFor="let topic of topics ; let i = index; " value="{{i}}" >  {{topic}} </option>
+                  <option selected=selected> Sujet du jour : {{ (informations| async)[1].value.value }} </option>
+                     <option (click)="addTopicToFirebase(topic)"  *ngFor="let topic of topics | async ; let i = index; " value="{{i}}" >  {{topic.value}} </option>
                   </select>
               </div>
               <div class="col-sm-1 d-none d-sm-block ">
@@ -32,31 +32,32 @@
                 </div>
                 <ul class="list-group list-group-flush">
 
-                  <li class="list-group-item">
+                  <li class="list-group-item" *ngFor="let present of presents | async ; let i = index; ">
 
                     <div class="form-inline">
                       <div class="row">
                         <div class="col-sm-1">
-                          <h4><span class="badge badge-dark"> 1 </span> </h4></div>
+                          <h4><span class="badge badge-dark"> {{i}} </span> </h4></div>
                         <div class="col-sm-4 ">
                           <div class="form-group">
                             <label class="space col-sm-12">Prénom </label>
-                            <input type="text" [(ngModel)]="N0" value="{{present[0].prenom}}" (keyup)="addPersonToFirebase('0', M0 , N0)" class="form-control col-sm-12" placeholder="Hello ">
+                            <!-- <input type="text" [(ngModel)]="N0" value="{{present.prenom}}" (keyup)="addPersonToFirebase('0', M0 , N0)" class="form-control col-sm-12" placeholder="Hello "> -->
+                            <input type="text" value="{{present.prenom}}" class="form-control col-sm-12" placeholder="Hello ">
                           </div>
                         </div>
                         <div class="col-sm-4 ">
                           <div class="form-group space">
                             <label class="space col-sm-12">Nom </label>
-                            <input type="text" [(ngModel)]="M0" value="{{present[0].nom}}" (change)="addPersonToFirebase('0', M0, N0 )" class="form-control col-sm-12" placeholder="World ">
+                            <input type="text" value="{{present.nom }}" class="form-control col-sm-12" placeholder="World ">
                           </div>
                         </div>
 
                         <div class="col-sm-3 form-group ">
-                          <button type="submit " *ngIf="present[0].nom!='-' && present[0].prenom!='-'  " (click)="addPersonToFirebase('0', '-', '-' )" class="btn btn-danger space "><i class="fas fa-window-close fa-lg "></i></button>
+                          <button type="submit " (click)="addPersonToFirebase('0', '-', '-' )" class="btn btn-danger space "><i class="fas fa-window-close fa-lg "></i></button>
                           <button type="submit " disabled class="btn btn-success space "><i class="fas fa-calendar-check fa-lg "></i></button>
                         </div>
 
-                        <div *ngIf="present[0].nom!='-' && present[0].prenom!='-' " class="col-sm-12 ">
+                        <div *ngIf="present.nom!='-' && present.prenom!='-' " class="col-sm-12 ">
                           Envoyer une invitation à :
                           < {{N0}}.{{M0}}@capgemini.com>
                         </div>

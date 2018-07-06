@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import * as moment from 'moment';
-import { Observable, Subject, ReplaySubject, from, of, range } from 'rxjs';
-import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
 
 @Component({
   selector: 'app-root',
@@ -14,34 +15,53 @@ export class AppComponent {
   private basePath: string = '/topics';
   public topics: any = [];
   public informations: any = [];
-  public present: person[] = [];
-  //{ name: "abc", email: "heelo" }
+
+  public presents: Observable<person[]>;
+  public newDay: boolean = false;
 
   todayDate = moment().locale('fr').format('L');
 
-  constructor(public db: AngularFireDatabase) {
-    db.list('/topics').valueChanges().subscribe(data => { this.topics = data; });
-    db.list<person>('/present').valueChanges().subscribe(data => {
-      this.present = data;
+  itemsRef: AngularFireList<any>;
+  items: Observable<any[]>;
+
+  constructor(private db: AngularFireDatabase) {
+  }
+
+  ngOnInit() {
+
+    this.informations = this.db.list('/informations').snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, value: c.payload.val() }));
     });
-    db.list('/informations').valueChanges().subscribe(data => {
-      this.informations = data;
-      if (this.informations[0] != this.todayDate) {
-        this.addDateToFirebase(this.todayDate);
-        this.addTopicToFirebase("aucun n'a été proposé");
-        this.addPersonToFirebase("1", "-", "-");
-        this.addPersonToFirebase("2", "-", "-");
-        this.addPersonToFirebase("3", "-", "-");
-        this.addPersonToFirebase("4", "-", "-");
-        this.addPersonToFirebase("5", "-", "-");
-        this.addPersonToFirebase("6", "-", "-");
-        this.addPersonToFirebase("7", "-", "-");
-      }
+
+    this.topics = this.db.list('/topics').snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, value: c.payload.val() }));
     });
+
+
+    this.presents = this.db.list('/present').snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, data: c.payload.val(), ...c.payload.val() }));
+    });
+
+    console.log("test" + this.presents);
+    console.log("topics" + this.topics);
 
   }
 
-  ngOnInit() { }
+
+
+
+  init() {
+    this.addDateToFirebase(this.todayDate);
+    this.addTopicToFirebase("aucun n'a été proposé");
+    this.addPersonToFirebase("0", "-", "-");
+    this.addPersonToFirebase("1", "-", "-");
+    this.addPersonToFirebase("2", "-", "-");
+    this.addPersonToFirebase("3", "-", "-");
+    this.addPersonToFirebase("4", "-", "-");
+    this.addPersonToFirebase("5", "-", "-");
+    this.addPersonToFirebase("6", "-", "-");
+    this.addPersonToFirebase("7", "-", "-");
+  }
 
   addPersonToFirebase(id, name, pre) {
     let newKey = id;
@@ -98,7 +118,8 @@ export class AppComponent {
     if (title == "") {
       alert("Ce champ est obligatoire");
     } else {
-      this.topics.push(title);
+      this.addTopicToFirebase(title);
+      //this.topics.push(title);
       this.addTopic(title);
       this.topicInput = '';
     }
@@ -110,11 +131,6 @@ export class AppComponent {
 
 }
 
-export interface members {
-
-
-
-}
 
 export interface person {
   nom: string;
