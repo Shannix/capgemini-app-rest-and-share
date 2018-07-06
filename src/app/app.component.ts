@@ -16,7 +16,7 @@ export class AppComponent {
   public topics: any = [];
   public informations: any = [];
 
-  public presents: Observable<person[]>;
+  public presents: Observable<any[]>;
   public newDay: boolean = false;
 
   todayDate = moment().locale('fr').format('L');
