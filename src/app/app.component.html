@@ -33,7 +33,7 @@
                 <ul class="list-group list-group-flush">
 
                   <!-- <li class="list-group-item" *ngFor="let present of presents | async ; let i = index; "> -->
-                  <li class="list-group-item" *ngFor="let present of presents | async ; let i = index; ">
+                  <li class="list-group-item " *ngFor="let present of presents | async ; let i = index; ">
 
                     <form (submit)="RegisterUser($event)">
 
@@ -64,21 +64,14 @@
                           </div>
 
                           <div *ngIf="present.nom!='-' && present.prenom!='-' " class="col-sm-12 ">
-                            Envoyer une invitation à :
+                            Une invitation sera envoyer à :
                             < {{present.prenom}}.{{present.nom}}@capgemini.com>
                           </div>
-
                         </div>
                       </div>
                     </form>
+
                   </li>
-
-
-
-
-
-
-
 
                 </ul>
               </div>
