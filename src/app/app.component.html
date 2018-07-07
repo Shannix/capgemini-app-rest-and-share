@@ -13,9 +13,9 @@
               </div>
               <div class="col-12 col-sm-10">
                 <select class="custom-select" size="3" style="width:100%;">
-                  <option selected=selected> Sujet du jour :  </option>
+                     <option selected=selected> Sujet du jour :  </option>
                      <option (click)="addTopicToFirebase(topic)"  *ngFor="let topic of topics | async ; let i = index; " value="{{i}}" >  {{topic.value}} </option>
-                  </select>
+                </select>
               </div>
               <div class="col-sm-1 d-none d-sm-block ">
                 <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-dark "><i class="fas fa-plus-square fa-2x "></i></button>
@@ -44,7 +44,7 @@
                       <div class="form-inline">
                         <div class="row">
                           <div class="col-sm-1" *ngIf="present.nom=='-' || present.prenom=='-'" style="margin-top:2%;">
-                            <h4><span> <i class="fas fa-frown fa-2x text-danger"></i> </span> </h4>
+                            <h4><span> <i class="fas fa-frown fa-spin fa-2x text-danger"></i> </span> </h4>
                           </div>
 
                           <div class="col-sm-1" *ngIf="present.nom!='-' && present.prenom!='-'" style="margin-top:2%;">
@@ -103,21 +103,21 @@
 
 
     <!-- Modal -->
-    <div class="modal fade " id="exampleModal " tabindex="-1 " role="dialog " aria-labelledby="exampleModalLabel " aria-hidden="true ">
-      <div class="modal-dialog " role="document ">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
         <div class="modal-content ">
           <div class="modal-header ">
             <h5 class="modal-title " id="exampleModalLabel ">Nouveau theme</h5>
-            <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
-              <span aria-hidden="true ">&times;</span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
                             </button>
           </div>
 
           <div class="modal-body ">
-            <input type="text " [(ngModel)]="topicInput " id="topicInput " class="form-control " placeholder="Topic ">
+            <input type="text" [(ngModel)]="topicInput" id="topicInput" class="form-control" placeholder="Topic">
           </div>
           <div class="modal-footer ">
-            <button type="submit " class="btn btn-primary " onclick="closeModal() " (click)="updateTopic() ">Ajouter ce theme</button>
+            <button type="submit" class="btn btn-primary " onclick="closeModal()" (click)="updateTopic()">Ajouter ce theme</button>
           </div>
 
         </div>

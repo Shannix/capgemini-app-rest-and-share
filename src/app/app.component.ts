@@ -33,7 +33,6 @@ export class AppComponent {
       return changes.map(c => ({ key: c.payload.key, value: c.payload.val() }));
     });
 
-
     this.presents = this.db.list('/present').snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, data: c.payload.val(), ...c.payload.val() }));
     });
@@ -78,17 +77,9 @@ export class AppComponent {
     this.db.list('informations').push(list);
   }
 
-  /*
-    public getList() {
-      let topicsTab: any = [];
-      this.topicsTab = this.db.list('/topics').valueChanges().subscribe(data => { this.topicsTab = data; });
-      console.log(topicsTab);
-      return this.topicsTab;
-    }
-  */
 
   public addTopic(newTopic: string) {
-    this.db.list(this.basePath).push(newTopic);
+    this.db.list('/topics').push(newTopic);
   }
 
 
@@ -100,21 +91,13 @@ export class AppComponent {
 
 
 
-
-
-
-
-
-
   topicInput = '';
   updateTopic = function() {
-    //  e.preventDefault();
     let title = this.topicInput;
     if (title == "") {
       alert("Ce champ est obligatoire");
     } else {
-      this.addTopicToFirebase(title);
-      //this.topics.push(title);
+      //this.addTopicToFirebase(title);
       this.addTopic(title);
       this.topicInput = '';
     }
@@ -135,10 +118,4 @@ export class AppComponent {
 
 
 
-}
-
-
-export interface person {
-  nom: string;
-  prenom: string;
 }
