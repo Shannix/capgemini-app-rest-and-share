@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map'
 })
 export class AppComponent {
 
+
   private basePath: string = '/topics';
   public topics: any = [];
   public informations: any = [];
@@ -127,6 +128,22 @@ export class AppComponent {
 
 
   }
+
+
+
+
+  RegisterUser(e) {
+
+    e.preventDefault();
+    let id = e.target.elements[0].value;
+    let nom = e.target.elements[1].value;
+    let prenom = e.target.elements[2].value;
+
+    alert(nom + prenom);
+
+    this.addPersonToFirebase(id, prenom, nom);
+  }
+
 
 
 }

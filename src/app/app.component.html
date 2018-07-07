@@ -32,40 +32,53 @@
                 </div>
                 <ul class="list-group list-group-flush">
 
+                  <!-- <li class="list-group-item" *ngFor="let present of presents | async ; let i = index; "> -->
                   <li class="list-group-item" *ngFor="let present of presents | async ; let i = index; ">
 
-                    <div class="form-inline">
-                      <div class="row">
-                        <div class="col-sm-1">
-                          <h4><span class="badge badge-dark"> {{i}} </span> </h4></div>
-                        <div class="col-sm-4 ">
-                          <div class="form-group">
-                            <label class="space col-sm-12">Prénom </label>
-                            <!-- <input type="text" [(ngModel)]="N0" value="{{present.prenom}}" (keyup)="addPersonToFirebase('0', M0 , N0)" class="form-control col-sm-12" placeholder="Hello "> -->
-                            <input type="text" value="{{present.prenom}}" class="form-control col-sm-12" placeholder="Hello ">
+                    <form (submit)="RegisterUser($event)">
+
+                      <div class="form-inline">
+                        <div class="row">
+                          <div class="col-sm-1">
+                            <h4><span class="badge badge-dark"> {{i+1}} </span> </h4>
+                            <input type="hidden" value="{{i}}" class="form-control col-sm-12" placeholder="Hello">
+
                           </div>
-                        </div>
-                        <div class="col-sm-4 ">
-                          <div class="form-group space">
-                            <label class="space col-sm-12">Nom </label>
-                            <input type="text" value="{{present.nom }}" class="form-control col-sm-12" placeholder="World ">
+                          <div class="col-sm-4 ">
+                            <div class="form-group">
+                              <label class="space col-sm-12"> Prénom </label>
+                              <!-- <input type="text" [(ngModel)]="N0" value="{{present.prenom}}"  class="form-control col-sm-12" placeholder="Hello "> -->
+                              <input type="text" value="{{present.prenom}}" class="form-control col-sm-12" placeholder="-">
+                            </div>
                           </div>
-                        </div>
+                          <div class="col-sm-4 ">
+                            <div class="form-group space">
+                              <label class="space col-sm-12"> Nom </label>
+                              <input type="text" [value]="present.nom" class=" form-control col-sm-12 " placeholder="-">
+                            </div>
+                          </div>
 
-                        <div class="col-sm-3 form-group ">
-                          <button type="submit " (click)="addPersonToFirebase('0', '-', '-' )" class="btn btn-danger space "><i class="fas fa-window-close fa-lg "></i></button>
-                          <button type="submit " disabled class="btn btn-success space "><i class="fas fa-calendar-check fa-lg "></i></button>
-                        </div>
+                          <div class="col-sm-3 form-group ">
+                            <button type="submit " *ngIf="present.nom!='-' && present.prenom!='-'" (click)="addPersonToFirebase( '0', '-', '-' ) " class="btn btn-danger space "><i class="fas fa-window-close fa-lg "></i></button>
+                            <button type="submit " *ngIf="present.nom=='-' || present.prenom=='-'" class="btn btn-success space "><i class="fas fa-calendar-check fa-lg "></i></button>
+                          </div>
 
-                        <div *ngIf="present.nom!='-' && present.prenom!='-' " class="col-sm-12 ">
-                          Envoyer une invitation à :
-                          < {{N0}}.{{M0}}@capgemini.com>
-                        </div>
+                          <div *ngIf="present.nom!='-' && present.prenom!='-' " class="col-sm-12 ">
+                            Envoyer une invitation à :
+                            < {{present.prenom}}.{{present.nom}}@capgemini.com>
+                          </div>
 
+                        </div>
                       </div>
-                    </div>
-
+                    </form>
                   </li>
+
+
+
+
+
+
+
 
                 </ul>
               </div>
@@ -98,7 +111,7 @@
             <h5 class="modal-title " id="exampleModalLabel ">Nouveau theme</h5>
             <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
               <span aria-hidden="true ">&times;</span>
-            </button>
+                            </button>
           </div>
 
           <div class="modal-body ">
