@@ -39,11 +39,15 @@
 
                       <div class="form-inline">
                         <div class="row">
-                          <div class="col-sm-1">
-                            <h4><span class="badge badge-dark"> {{i+1}} </span> </h4>
-                            <input type="hidden" value="{{i}}" class="form-control col-sm-12" placeholder="Hello">
-
+                          <div class="col-sm-1" *ngIf="present.nom=='-' || present.prenom=='-'" style="margin-top:2%;">
+                            <h4><span> <i class="fas fa-frown fa-2x text-danger"></i> </span> </h4>
                           </div>
+
+                          <div class="col-sm-1" *ngIf="present.nom!='-' && present.prenom!='-'" style="margin-top:2%;">
+                            <h4><span > <i class="fas fa-user-check fa-2x text-success" ></i> </span> </h4>
+                          </div>
+
+                          <input type="hidden" value="{{i}}">
                           <div class="col-sm-4 ">
                             <div class="form-group">
                               <label class="space col-sm-12"> Prénom </label>

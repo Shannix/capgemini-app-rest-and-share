@@ -139,9 +139,8 @@ export class AppComponent {
     let nom = e.target.elements[1].value;
     let prenom = e.target.elements[2].value;
 
-    alert(nom + prenom);
-
     this.addPersonToFirebase(id, prenom, nom);
+    alert("Félicitation, tu es bien inscrit pour aujourd'hui à 12H30 - étage 0 - salle confulence. Nous comptant sur toi pour être à l'heure. ");
   }
 
 
