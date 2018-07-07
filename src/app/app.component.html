@@ -28,7 +28,7 @@
             <div class="col-sm-9 d-block mx-auto">
               <div class="card">
                 <div class="card-header">
-                  Liste des participants de ce {{today}}
+                  <h2>Liste des participants de ce {{today}}</h2>
                 </div>
                 <ul class="list-group list-group-flush">
 
@@ -36,14 +36,13 @@
                   <li class="list-group-item " *ngFor="let present of presents | async ; let i = index; ">
 
                     <form (submit)="RegisterUser($event)">
+                      <div *ngIf="present.nom!='-' && present.prenom!='-' " class="col-sm-12 alert alert-success ">
+                        Une invitation sera envoyer à :
+                        < {{present.prenom}}.{{present.nom}}@capgemini.com>
+                      </div>
 
                       <div class="form-inline">
                         <div class="row">
-                          <div *ngIf="present.nom!='-' && present.prenom!='-' " class="col-sm-12 alert alert-success ">
-                            Une invitation sera envoyer à :
-                            < {{present.prenom}}.{{present.nom}}@capgemini.com>
-                          </div>
-
                           <div class="col-sm-1" *ngIf="present.nom=='-' || present.prenom=='-'" style="margin-top:2%;">
                             <h4><span> <i class="fas fa-frown fa-2x text-danger"></i> </span> </h4>
                           </div>
