@@ -112,8 +112,12 @@ export class AppComponent {
     let nom = e.target.elements[1].value;
     let prenom = e.target.elements[2].value;
 
-    this.addPersonToFirebase(id, prenom, nom);
-    alert("Félicitation, tu es bel et bien inscrit pour aujourd'hui à 12H30 - étage 0 - salle confulence. Nous comptant sur toi pour être à l'heure. ");
+    if (nom != "" || prenom != "") {
+      this.addPersonToFirebase(id, prenom, nom);
+      alert(" Félicitation, tu es bel et bien inscrit pour aujourd'hui à 12H30 - étage 0 - salle confulence. Nous comptant sur toi pour être à l'heure. ");
+    } else {
+      alert(" Oupps, nom et prenom obligatoire. ");
+    }
   }
 
 

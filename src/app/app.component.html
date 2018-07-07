@@ -13,7 +13,7 @@
               </div>
               <div class="col-12 col-sm-10">
                 <select class="custom-select" size="3" style="width:100%;">
-                     <option selected=selected> Sujet du jour :  </option>
+                     <option selected=selected> Sujet du jour : {{ (informations| async)[1].value.value }} </option>
                      <option (click)="addTopicToFirebase(topic)"  *ngFor="let topic of topics | async ; let i = index; " value="{{i}}" >  {{topic.value}} </option>
                 </select>
               </div>
