@@ -17,7 +17,7 @@ export class AppComponent {
 
   public topics: any = [];
   public informations: any = [];
-  public informations2: Observable<any[]>;
+  public informations2: any = [];
 
   public presents: Observable<any[]>;
   public newDay: boolean = false;
@@ -45,12 +45,9 @@ export class AppComponent {
       this.informations2 = item;
       console.log(this.informations2[0]);
 
-      if (this.todayDate != this.informations2[0]) {
-        this.init();
-      }
+      if (this.todayDate != this.informations2[0]) { this.init(); }
 
-    }
-
+    });
 
 
   }
