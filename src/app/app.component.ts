@@ -11,11 +11,14 @@ import 'rxjs/add/operator/map'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   today = moment().locale('fr').format("dddd, Do MMMM YYYY");
   todayDate = moment().locale('fr').format('L');
 
   public topics: any = [];
   public informations: any = [];
+  public informations2: Observable<any[]>;
+
   public presents: Observable<any[]>;
   public newDay: boolean = false;
 
@@ -37,14 +40,26 @@ export class AppComponent {
       return changes.map(c => ({ key: c.payload.key, data: c.payload.val(), ...c.payload.val() }));
     });
 
+    this.db.list('/informations').valueChanges().subscribe(item => {
+      console.log(item);
+      this.informations2 = item;
+      console.log(this.informations2[0]);
+
+      if (this.todayDate != this.informations2[0]) {
+        this.init();
+      }
+
+    }
+
+
+
   }
 
 
 
 
   init() {
-    this.addDateToFirebase(this.todayDate);
-    this.addTopicToFirebase("aucun n'a été proposé");
+
     this.addPersonToFirebase("0", "-", "-");
     this.addPersonToFirebase("1", "-", "-");
     this.addPersonToFirebase("2", "-", "-");
@@ -53,6 +68,9 @@ export class AppComponent {
     this.addPersonToFirebase("5", "-", "-");
     this.addPersonToFirebase("6", "-", "-");
     this.addPersonToFirebase("7", "-", "-");
+    this.addInformationsToFirebase("0", "3"); // nombre de participants 0
+    this.addInformationsToFirebase(this.todayDate, "1"); // date d'aujourd'hui
+    this.addTopicToFirebase("aucun n'a été proposé"); // aucun topic
   }
 
   addPersonToFirebase(id, name, pre) {
@@ -67,7 +85,7 @@ export class AppComponent {
     let newKey = "2";
     let list = this.db.object(`/informations/${newKey}`).set(topic);
 
-    this.db.list('informations').push(list);
+    this.db.list('/informations/${newKey}').push(topic);
   }
 
   addDateToFirebase(date) {
@@ -77,6 +95,12 @@ export class AppComponent {
     this.db.list('informations').push(list);
   }
 
+  addInformationsToFirebase(data, number) {
+    let newKey = number;
+    let list = this.db.object(`/informations/${newKey}`).set(data);
+
+    this.db.list('informations').push(list);
+  }
 
   public addTopic(newTopic: string) {
     this.db.list('/topics').push(newTopic);
@@ -85,7 +109,7 @@ export class AppComponent {
 
   //---------------------------FOOTER-------------------------------------------------------------
   year = (new Date()).getFullYear();
-  version = "v0.1";
+  version = "v1.0";
   owner = "rest and share";
   //----------------------------------------------------------------------------------------------
 
@@ -97,7 +121,7 @@ export class AppComponent {
     if (title == "") {
       alert("Ce champ est obligatoire");
     } else {
-      //this.addTopicToFirebase(title);
+      this.addInformationsToFirebase(title, 2);
       this.addTopic(title);
       this.topicInput = '';
     }

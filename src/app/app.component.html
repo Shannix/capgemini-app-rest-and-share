@@ -14,7 +14,7 @@
               <div class="col-12 col-sm-10">
                 <select class="custom-select" size="3" style="width:100%;">
                      <option selected=selected> Sujet du jour : {{ (informations| async)[1].value.value }} </option>
-                     <option (click)="addTopicToFirebase(topic)"  *ngFor="let topic of topics | async ; let i = index; " value="{{i}}" >  {{topic.value}} </option>
+                     <option (click)="addInformationsToFirebase(topic,'2')"  *ngFor="let topic of topics | async ; let i = index; " value="{{i}}" >  {{topic.value}} </option>
                 </select>
               </div>
               <div class="col-sm-1 d-none d-sm-block ">
@@ -32,10 +32,9 @@
                 </div>
                 <ul class="list-group list-group-flush">
 
-                  <!-- <li class="list-group-item" *ngFor="let present of presents | async ; let i = index; "> -->
                   <li class="list-group-item " *ngFor="let present of presents | async ; let i = index; ">
-
                     <form (submit)="RegisterUser($event)">
+
                       <div *ngIf="present.nom!='-' && present.prenom!='-' " class="col-sm-12 alert alert-success ">
                         Une invitation sera envoyer à :
                         < {{present.prenom}}.{{present.nom}}@capgemini.com>
@@ -124,6 +123,48 @@
       </div>
     </div>
 
+
+    <!-- Modal -->
+    <div class="modal fade bd-example-modal-lg" id="welcomModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+          <div class="modal-header ">
+            <h3 class="modal-title " id="exampleModalLabel "> <span> <img src="https://www.idvroom.com/image/55075_178_120.png" alt="..." width="50" height="50" class="img-fluid"> </span> Hey toi! </h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+                            </button>
+          </div>
+          <div class="modal-body ">
+            <p> La table Rest and Share est une table à disposition des employés du site Ivoire et qui a pour but de faciliter les rencontres et les échanges entre collaborateurs des différentes entités pendant la pause déjeuner. </p>
+            <p>Viens t'installer ce <b> {{today}} </b> à cette table située à la cafétéria du RDC le midi et laisse des collègues que tu ne connais pas encore te rejoindre !</p>
+
+            <h3> Sujet du jour : {{ (informations| async)[1].value.value }}  </h3>
+            <br>
+            <div class="row ">
+              <div class="card border-dark text-center col-3 space-card d-none d-sm-block">
+                <div class="card-body text-dark">
+                  <p> En ce moment, il y'a</p>
+                  <h4 class="card-title">   0 <br> <i class="fas fa-users fa-lg"></i></h4>
+                </div>
+              </div>
+              <div class="card border-dark text-center col-3 space-card d-none d-sm-block">
+                <div class="card-body text-dark">
+                  <br>
+                  <p> Quand ?</p>
+                  <h4 class="card-title"> <i class="fas fa-clock fa-lg space"></i> 12h30  </h4>
+                </div>
+              </div>
+              <div class="card border-dark text-center col-3 space-card d-none d-sm-block">
+                <div class="card-body text-dark">
+                  <h5 class="card-title"> <br> <i class="fas fa-map-signs fa-lg"></i> rez-de-chaussée <br> salle Confluence</h5>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <footer>

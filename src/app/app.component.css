@@ -3,11 +3,15 @@
 
 
 option{
-  font-size: 1.70em;
+  font-size: 1.3em;
 }
 
 .space {
     margin-left: 5px;
+}
+
+.space-card {
+    margin-left: 7%;
 }
 
 .line {
