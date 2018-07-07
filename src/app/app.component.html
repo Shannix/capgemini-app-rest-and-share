@@ -39,6 +39,11 @@
 
                       <div class="form-inline">
                         <div class="row">
+                          <div *ngIf="present.nom!='-' && present.prenom!='-' " class="col-sm-12 alert alert-success ">
+                            Une invitation sera envoyer à :
+                            < {{present.prenom}}.{{present.nom}}@capgemini.com>
+                          </div>
+
                           <div class="col-sm-1" *ngIf="present.nom=='-' || present.prenom=='-'" style="margin-top:2%;">
                             <h4><span> <i class="fas fa-frown fa-2x text-danger"></i> </span> </h4>
                           </div>
@@ -51,26 +56,24 @@
                           <div class="col-sm-4 ">
                             <div class="form-group">
                               <label class="space col-sm-12"> Prénom </label>
-                              <!-- <input type="text" [(ngModel)]="N0" value="{{present.prenom}}"  class="form-control col-sm-12" placeholder="Hello "> -->
-                              <input type="text" value="{{present.prenom}}" class="form-control col-sm-12" placeholder="-">
+                              <input type="text" *ngIf="present.prenom!='-'" disabled value="{{present.prenom}}" class="form-control col-sm-12">
+                              <input type="text" *ngIf="present.prenom=='-'" value="" class="form-control col-sm-12" placeholder="-">
                             </div>
                           </div>
                           <div class="col-sm-4 ">
                             <div class="form-group space">
                               <label class="space col-sm-12"> Nom </label>
-                              <input type="text" [value]="present.nom" class=" form-control col-sm-12 " placeholder="-">
+                              <input type="text" *ngIf="present.nom!='-'" disabled [value]="present.nom" class=" form-control col-sm-12 ">
+                              <input type="text" *ngIf="present.nom=='-'" value="" class=" form-control col-sm-12 " placeholder="-">
                             </div>
                           </div>
 
                           <div class="col-sm-3 form-group ">
-                            <button type="submit " *ngIf="present.nom!='-' && present.prenom!='-'" (click)="addPersonToFirebase( '0', '-', '-' ) " class="btn btn-danger space "><i class="fas fa-window-close fa-lg "></i></button>
+                            <button type="button" *ngIf="present.nom!='-' && present.prenom!='-'" (click)="addPersonToFirebase( i , '-', '-' ) " class="btn btn-danger space "><i class="fas fa-window-close fa-lg "></i></button>
                             <button type="submit " *ngIf="present.nom=='-' || present.prenom=='-'" class="btn btn-success space "><i class="fas fa-calendar-check fa-lg "></i></button>
                           </div>
 
-                          <div *ngIf="present.nom!='-' && present.prenom!='-' " class="col-sm-12 ">
-                            Une invitation sera envoyer à :
-                            < {{present.prenom}}.{{present.nom}}@capgemini.com>
-                          </div>
+
                         </div>
                       </div>
                     </form>
