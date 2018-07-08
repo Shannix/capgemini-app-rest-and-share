@@ -12,8 +12,8 @@ import 'rxjs/add/operator/map'
 })
 export class AppComponent {
 
-  today = moment().locale('fr').format("dddd, Do MMMM YYYY");
-  todayDate = moment().locale('fr').format('L');
+  public today = moment().locale('fr').format("dddd, Do MMMM YYYY");
+  public todayDate = moment().locale('fr').format('L');
 
   public topics: any = [];
   public informations: any = [];

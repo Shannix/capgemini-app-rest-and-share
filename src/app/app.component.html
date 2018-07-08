@@ -1,5 +1,7 @@
 <div class="wrapper">
 
+
+
   <div id="content" class="container-fluid">
     <br>
     <div class="row">
@@ -13,7 +15,7 @@
               </div>
               <div class="col-12 col-sm-10">
                 <select class="custom-select" size="3" style="width:100%;">
-                     <option selected=selected> Sujet du jour : {{ (informations)[1].value.value }} </option>
+                     <option selected=selected> Sujet du jour : {{ (informations|async)[1].value.value }} </option>
                      <option (click)="addInformationsToFirebase(topic,'2')"  *ngFor="let topic of topics | async ; let i = index; " value="{{i}}" >  {{topic.value}} </option>
                 </select>
               </div>
@@ -28,7 +30,7 @@
             <div class="col-sm-9 d-block mx-auto">
               <div class="card">
                 <div class="card-header">
-                  <h2>Liste des participants de ce {{today}}</h2>
+                  <h2>Liste des participants de ce  {{ today }} </h2>
                 </div>
                 <ul class="list-group list-group-flush">
 
@@ -138,7 +140,7 @@
             <p> La table Rest and Share est une table à disposition des employés du site Ivoire et qui a pour but de faciliter les rencontres et les échanges entre collaborateurs des différentes entités pendant la pause déjeuner. </p>
             <p> <i class="fas fa-arrow-alt-circle-right fa-lg"></i> Viens t'installer ce <b> {{today}} </b> à cette table située à la cafétéria du RDC le midi et laisse des collègues que tu ne connais pas encore te rejoindre !</p>
 
-            <h3>Sujet du jour :   </h3>
+
             <br>
             <div class="row ">
               <div class="card border-dark text-center col-3 space-card d-none d-sm-block">
@@ -159,6 +161,10 @@
                   <h5 class="card-title"> <br> <i class="fas fa-map-signs fa-lg"></i> rez-de-chaussée <br> salle Confluence</h5>
                 </div>
               </div>
+            </div>
+            <br>
+            <div class="col-12 text-center">
+              <i class="fas fa-frown fa-spin fa-2x text-danger"></i> <i class="fas fa-arrow-alt-circle-right fa-2x space"></i> Saisi ton prénom <i class="fas fa-arrow-alt-circle-right fa-2x space"></i> Saisi ton nom <i class="fas fa-arrow-alt-circle-right fa-2x space"></i>              <i class="fas fa-calendar-check fa-2x text-success space"></i> <i class="fas fa-arrow-alt-circle-right fa-2x space"></i> <i class="fas fa-user-check fa-2x text-success"></i>
             </div>
             <br>
             <b class="float-right">  - L'équipe Rest and Share  </b>
