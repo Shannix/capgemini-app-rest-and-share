@@ -22,6 +22,8 @@ export class AppComponent {
   public presents: Observable<any[]>;
   public newDay: boolean = false;
 
+  public nbPresent: number = 0;
+
 
 
   constructor(private db: AngularFireDatabase) { }
@@ -44,7 +46,7 @@ export class AppComponent {
       console.log(item);
       this.informations2 = item;
       console.log(this.informations2[0]);
-
+      this.nbPresent = this.informations2[2];
       if (this.todayDate != this.informations2[0]) { this.init(); }
 
     });
@@ -56,7 +58,6 @@ export class AppComponent {
 
 
   init() {
-
     this.addPersonToFirebase("0", "-", "-");
     this.addPersonToFirebase("1", "-", "-");
     this.addPersonToFirebase("2", "-", "-");
@@ -68,6 +69,7 @@ export class AppComponent {
     this.addInformationsToFirebase("0", "3"); // nombre de participants 0
     this.addInformationsToFirebase(this.todayDate, "1"); // date d'aujourd'hui
     this.addTopicToFirebase("aucun n'a été proposé"); // aucun topic
+    this.addInformationsToFirebase(0, "3");
   }
 
   addPersonToFirebase(id, name, pre) {
@@ -75,6 +77,15 @@ export class AppComponent {
     let list = this.db.object(`/present/${newKey}`).set({ nom: name, prenom: pre });
 
     this.db.list('present').push(list);
+
+    if (name != "-") {
+      this.nbPresent++;
+      this.addInformationsToFirebase(this.nbPresent, "3");
+    } else {
+      this.nbPresent--;
+      this.addInformationsToFirebase(this.nbPresent, "3");
+    }
+
   }
 
 
