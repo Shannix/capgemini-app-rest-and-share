@@ -135,7 +135,7 @@ export class AppComponent {
 
     if (nom != "" || prenom != "") {
       this.addPersonToFirebase(id, prenom, nom);
-      alert(" Félicitation, tu es bel et bien inscrit pour aujourd'hui à 12H30 - étage 0 - salle confulence. Nous comptant sur toi pour être à l'heure. ");
+      alert(" Félicitation, tu es bel et bien inscrit pour aujourd'hui à 12H30 - étage 0 - salle confulence. Nous comptons sur toi pour être à l'heure. ");
     } else {
       alert(" Oupps, nom et prenom obligatoire. ");
     }
