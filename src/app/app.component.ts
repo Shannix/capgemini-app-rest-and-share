@@ -47,7 +47,7 @@ export class AppComponent {
       this.informations2 = item;
       console.log(this.informations2[0]);
       this.nbPresent = this.informations2[2];
-      if (this.todayDate != this.informations2[0]) { this.init(); }
+      //if (this.todayDate != this.informations2[0]) { this.init(); }
 
     });
 
