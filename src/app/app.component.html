@@ -68,8 +68,9 @@
                             </div>
                           </div>
 
-                          <div class="col-sm-3 form-group ">
+                          <div class="col-sm-3 form-group " style="top:7px;">
                             <button type="button" *ngIf="present.nom!='-' && present.prenom!='-'" (click)="addPersonToFirebase( i , '-', '-' ) " class="btn btn-danger space "><i class="fas fa-window-close fa-lg "></i></button>
+                            <a href="https://www.linkedin.com/search/results/index/?keywords={{present.prenom}}%20{{present.nom}}&origin=GLOBAL_SEARCH_HEADER" class="btn btn-info space" style="color:white;" *ngIf="present.nom!='-' && present.prenom!='-'">  <i class="fab fa-linkedin fa-lg "></i></a>
                             <button type="submit " *ngIf="present.nom=='-' || present.prenom=='-'" class="btn btn-success space "><i class="fas fa-calendar-check fa-lg "></i></button>
                           </div>
 
@@ -131,7 +132,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content ">
           <div class="modal-header ">
-            <h3 class="modal-title " id="exampleModalLabel "> <span> <img src="https://www.idvroom.com/image/55075_178_120.png" alt="..." width="50" height="50" class="img-fluid"> </span> Hey toi! </h3>
+            <h3 class="modal-title" style="color: #0070ad;" id="exampleModalLabel "> I <span> <img src="https://www.idvroom.com/image/55075_178_120.png" alt="..." width="50" height="50" class="img-fluid"> </span> making connections </h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
                             </button>
